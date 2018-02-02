@@ -1,0 +1,5 @@
+MYSQL_MAJOR: ENV MYSQL_MAJOR 8.0
+MYSQL_VERSION: ENV MYSQL_VERSION 8.0.3-rc-1debian8
+Config: "# Config files\nCOPY config/ /etc/mysql/"
+Update: "       && apt-get update && apt-get install -y mysql-community-client-core=\"${MYSQL_VERSION}\" mysql-community-server-core=\"${MYSQL_VERSION}\" \\"
+

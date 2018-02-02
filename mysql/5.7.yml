@@ -1,0 +1,6 @@
+MYSQL_MAJOR: "ENV MYSQL_MAJOR 5.7"
+MYSQL_VERSION: "ENV MYSQL_VERSION 5.7.21-1debian8"
+Comment: "\\\n# comment out a few problematic configuration values \n        && find /etc/mysql/ -name '*.cnf' -print0 \\ \n                | xargs -0 grep -lZE '^(bind-address|log)' \\ \n                | xargs -rt -0 sed -Ei 's/^(bind-address|log)/#&/' \\ \n # don't reverse lookup hostnames, they are usually another container \n        && echo '[mysqld] skip-host-cache skip-name-resolve' > /etc/mysql/conf.d/docker.cnf"
+Update: |
+  && apt-get update && apt-get install -y mysql-server=\"${MYSQL_VERSION}\" && rm -rf /var/lib/apt/lists/* \
+
